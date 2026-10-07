@@ -6,7 +6,6 @@
     <path
         android:strokeColor="#3D7BFF"
         android:strokeWidth="1.5"
-        android:strokeDasharray="2,2"
         android:pathData="M12,2v20" />
     <!-- Left butterfly / mirror wing -->
     <path
