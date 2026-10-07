@@ -32,7 +32,7 @@ fun BrushEditorPanel(
     onPropertiesChanged: (BrushProperties) -> Unit,
     onClose: () -> Unit
 ) {
-    var size by remember { mutableStateOf(properties.size) }
+    var brushSize by remember { mutableStateOf(properties.size) }
     var opacity by remember { mutableStateOf(properties.opacity) }
     var flow by remember { mutableStateOf(properties.flow) }
     var spacing by remember { mutableStateOf(properties.spacing) }
@@ -47,7 +47,7 @@ fun BrushEditorPanel(
 
     fun update() {
         val updated = properties.copy(
-            size = size,
+            size = brushSize,
             opacity = opacity,
             flow = flow,
             spacing = spacing,
@@ -116,7 +116,7 @@ fun BrushEditorPanel(
                             color = ElectricBlue.copy(alpha = opacity),
                             start = Offset(20f, size.height / 2f),
                             end = Offset(size.width - 20f, size.height / 2f),
-                            strokeWidth = size.coerceIn(2f, 32f),
+                            strokeWidth = brushSize.coerceIn(2f, 32f),
                             cap = StrokeCap.Round
                         )
                     } else {
@@ -125,7 +125,7 @@ fun BrushEditorPanel(
                                 color = ElectricBlue.copy(alpha = opacity),
                                 start = testPoints[i - 1],
                                 end = testPoints[i],
-                                strokeWidth = size.coerceIn(2f, 32f),
+                                strokeWidth = brushSize.coerceIn(2f, 32f),
                                 cap = StrokeCap.Round
                             )
                         }
@@ -154,10 +154,10 @@ fun BrushEditorPanel(
                 // Size Slider
                 ParameterSlider(
                     label = "Size",
-                    value = size,
+                    value = brushSize,
                     valueRange = 1f..300f,
-                    displayValue = "${size.toInt()} px",
-                    onValueChange = { size = it; update() }
+                    displayValue = "${brushSize.toInt()} px",
+                    onValueChange = { brushSize = it; update() }
                 )
 
                 // Opacity Slider
