@@ -255,8 +255,12 @@ fun HomeScreen(
             onCreate = { name, width, height, dpi, isAnim ->
                 showNewDialog = false
                 coroutineScope.launch {
-                    val created = repository.createNewProject(name, width, height, dpi, isAnim)
-                    onOpenProject(created.id)
+                    try {
+                        val created = repository.createNewProject(name, width, height, dpi, isAnim)
+                        onOpenProject(created.id)
+                    } catch (e: Throwable) {
+                        e.printStackTrace()
+                    }
                 }
             }
         )

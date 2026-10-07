@@ -19,7 +19,7 @@ import com.aurapaint.studio.ui.settings.SettingsScreen
 
 class MainActivity : ComponentActivity() {
 
-    private val projectRepository by lazy { ProjectRepository() }
+    private val projectRepository by lazy { ProjectRepository(applicationContext) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

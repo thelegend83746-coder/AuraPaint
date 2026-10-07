@@ -18,6 +18,7 @@ class LayerCompositor(
     }
     private val srcRect = Rect(0, 0, width, height)
     private val dstRect = Rect(0, 0, width, height)
+    private val bgPaint = Paint().apply { style = Paint.Style.FILL }
 
     // Temporary clip buffer to support nested clipping masks
     private var clipBuffer: Bitmap? = null
@@ -39,11 +40,14 @@ class LayerCompositor(
         targetCanvas: Canvas,
         backgroundColor: Int = Color.WHITE
     ) {
-        // Draw background base
+        // Draw background base within canvas bounds
         if (backgroundColor != Color.TRANSPARENT) {
-            targetCanvas.drawColor(backgroundColor)
+            bgPaint.color = backgroundColor
+            targetCanvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), bgPaint)
         } else {
-            targetCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
+            bgPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+            targetCanvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), bgPaint)
+            bgPaint.xfermode = null
         }
 
         var previousRasterLayer: RasterLayer? = null

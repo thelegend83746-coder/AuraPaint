@@ -29,7 +29,6 @@ class CanvasView(
     private val canvasBounds = RectF(0f, 0f, controller.canvasWidth.toFloat(), controller.canvasHeight.toFloat())
 
     init {
-        setLayerType(LAYER_TYPE_HARDWARE, null)
         inputTracker = InputTracker(controller.viewTransform, controller)
         controller.onInvalidateView = {
             postInvalidateOnAnimation()

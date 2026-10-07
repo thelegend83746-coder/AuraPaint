@@ -31,6 +31,15 @@ class LayerManager(
         _layersState.value = _layers.toList()
     }
 
+    fun replaceLayers(newLayers: List<Layer>) {
+        if (newLayers.isEmpty()) return
+        _layers.forEach { it.recycle() }
+        _layers.clear()
+        _layers.addAll(newLayers)
+        _activeLayerIndex.value = 0
+        notifyChanged()
+    }
+
     fun getActiveLayer(): Layer? {
         val idx = _activeLayerIndex.value
         return if (idx in _layers.indices) _layers[idx] else null

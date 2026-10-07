@@ -1,5 +1,6 @@
 package com.aurapaint.studio.project
 
+import android.content.Context
 import com.aurapaint.studio.core.AppConfig
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -10,15 +11,30 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class ProjectRepository(
-    private val baseDir: File = File(AppConfig.BASE_PROJECTS_DIR)
+    context: Context? = null
 ) {
     private val gson = Gson()
+    private val baseDir: File = AppConfig.resolveProjectsDir(context)
 
     private val _projects = MutableStateFlow<List<ProjectMetadata>>(emptyList())
     val projects: StateFlow<List<ProjectMetadata>> = _projects.asStateFlow()
 
     init {
-        baseDir.mkdirs()
+        try {
+            baseDir.mkdirs()
+        } catch (_: Exception) {}
+    }
+
+    fun getProjectMetadata(projectId: String): ProjectMetadata? {
+        val projectDir = getProjectDir(projectId)
+        val jsonFile = File(projectDir, "project.json")
+        if (jsonFile.exists()) {
+            try {
+                val header = gson.fromJson(jsonFile.readText(), ProjectFileHeader::class.java)
+                return header.metadata
+            } catch (_: Exception) {}
+        }
+        return null
     }
 
     suspend fun refreshProjects() = withContext(Dispatchers.IO) {
@@ -58,7 +74,11 @@ class ProjectRepository(
 
         // Create empty header
         val header = ProjectFileHeader(meta, emptyList())
-        File(projectDir, "project.json").writeText(gson.toJson(header))
+        try {
+            File(projectDir, "project.json").writeText(gson.toJson(header))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         refreshProjects()
         meta
@@ -90,7 +110,9 @@ class ProjectRepository(
         sourceDir.copyRecursively(targetDir, overwrite = true)
 
         val newHeader = header.copy(metadata = newMeta)
-        File(targetDir, "project.json").writeText(gson.toJson(newHeader))
+        try {
+            File(targetDir, "project.json").writeText(gson.toJson(newHeader))
+        } catch (_: Exception) {}
 
         refreshProjects()
         newMeta

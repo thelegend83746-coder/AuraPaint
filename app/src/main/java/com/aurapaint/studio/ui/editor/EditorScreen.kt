@@ -61,21 +61,20 @@ fun EditorScreen(
     val projectDir = remember(projectId) { repository.getProjectDir(projectId) }
 
     // Load or create project metadata & layers
-    var projectMeta by remember {
-        mutableStateOf(
-            ProjectMetadata(
-                id = projectId,
-                width = AppConfig.DEFAULT_CANVAS_WIDTH,
-                height = AppConfig.DEFAULT_CANVAS_HEIGHT
-            )
+    val initialMeta = remember(projectId) {
+        repository.getProjectMetadata(projectId) ?: ProjectMetadata(
+            id = projectId,
+            width = AppConfig.DEFAULT_CANVAS_WIDTH,
+            height = AppConfig.DEFAULT_CANVAS_HEIGHT
         )
     }
+    var projectMeta by remember { mutableStateOf(initialMeta) }
 
     val canvasController = remember(projectId) {
         val sessionDir = File(projectDir, "timelapse_session")
         CanvasController(
-            canvasWidth = projectMeta.width,
-            canvasHeight = projectMeta.height,
+            canvasWidth = initialMeta.width,
+            canvasHeight = initialMeta.height,
             sessionDir = sessionDir
         )
     }
@@ -87,7 +86,7 @@ fun EditorScreen(
 
     var activeBrush by remember { mutableStateOf(BrushRegistry.defaultPresets[3]) } // G-Pen
     var activePanel by remember { mutableStateOf(ActivePanel.NONE) }
-    var isAnimationEnabled by remember { mutableStateOf(projectMeta.isAnimation) }
+    var isAnimationEnabled by remember { mutableStateOf(initialMeta.isAnimation) }
 
     // Initialize animation timeline if needed
     LaunchedEffect(isAnimationEnabled) {
@@ -102,19 +101,16 @@ fun EditorScreen(
 
     // Load existing project data from disk if exists
     LaunchedEffect(projectId) {
-        val loaded = ProjectSerializer.loadProject(projectDir)
-        if (loaded != null) {
-            projectMeta = loaded.first
-            if (loaded.second.isNotEmpty()) {
-                val lm = canvasController.layerManager
-                // Clear existing and replace with loaded
-                while (lm.layers.isNotEmpty()) {
-                    lm.deleteActiveLayer()
-                }
-                for (l in loaded.second) {
-                    lm.addRasterLayer(l.name)
+        try {
+            val loaded = ProjectSerializer.loadProject(projectDir)
+            if (loaded != null) {
+                projectMeta = loaded.first
+                if (loaded.second.isNotEmpty()) {
+                    canvasController.layerManager.replaceLayers(loaded.second)
                 }
             }
+        } catch (e: Throwable) {
+            e.printStackTrace()
         }
     }
 

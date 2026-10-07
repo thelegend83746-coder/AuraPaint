@@ -1,5 +1,8 @@
 package com.aurapaint.studio.core
 
+import android.content.Context
+import java.io.File
+
 /**
  * Centralized application configuration, identity constants, and defaults.
  */
@@ -12,6 +15,37 @@ object AppConfig {
     const val BASE_PROJECTS_DIR = "/storage/emulated/0/test-folder/projects"
     const val BASE_EXPORTS_DIR = "/storage/emulated/0/test-folder/exports"
     const val BASE_BACKUP_DIR = "/storage/emulated/0/test-folder/backups"
+
+    fun resolveProjectsDir(context: Context?): File {
+        return resolveSafeDir(BASE_PROJECTS_DIR, "projects", context)
+    }
+
+    fun resolveExportsDir(context: Context?): File {
+        return resolveSafeDir(BASE_EXPORTS_DIR, "exports", context)
+    }
+
+    fun resolveBackupsDir(context: Context?): File {
+        return resolveSafeDir(BASE_BACKUP_DIR, "backups", context)
+    }
+
+    private fun resolveSafeDir(preferredPath: String, fallbackSubDir: String, context: Context?): File {
+        val target = File(preferredPath)
+        try {
+            if (target.exists() || target.mkdirs()) {
+                val testFile = File(target, ".test_perm")
+                testFile.writeText("ok")
+                testFile.delete()
+                return target
+            }
+        } catch (_: Exception) {
+            // Permission restricted, gracefully fall back to app-specific directory
+        }
+
+        val appDir = context?.getExternalFilesDir(null) ?: context?.filesDir
+        val fallback = File(appDir ?: File("/data/data/com.aurapaint.studio/files"), fallbackSubDir)
+        fallback.mkdirs()
+        return fallback
+    }
 
     // Engine Constants
     const val DEFAULT_CANVAS_WIDTH = 1920
