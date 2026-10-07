@@ -1,0 +1,16 @@
+<resources>
+    <color name="bg_dark">#121316</color>
+    <color name="editor_canvas_bg">#181A1F</color>
+    <color name="panel_surface">#20232B</color>
+    <color name="panel_surface_elevated">#272A34</color>
+    <color name="panel_border">#323642</color>
+    <color name="accent_electric_blue">#3D7BFF</color>
+    <color name="accent_violet">#8A5CFF</color>
+    <color name="accent_cyan">#00E5FF</color>
+    <color name="text_primary">#F4F5F8</color>
+    <color name="text_secondary">#A0A5B5</color>
+    <color name="text_muted">#5C6070</color>
+    <color name="color_danger">#FF4565</color>
+    <color name="color_success">#00D284</color>
+    <color name="color_warning">#FFAE33</color>
+</resources>

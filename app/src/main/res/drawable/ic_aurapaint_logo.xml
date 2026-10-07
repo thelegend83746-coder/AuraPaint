@@ -1,0 +1,93 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+
+    <!-- Dark Soft Outer Circle / Platter -->
+    <path
+        android:fillColor="#1E202B"
+        android:pathData="M64,8 C94.9,8 120,33.1 120,64 C120,94.9 94.9,120 64,120 C33.1,120 8,94.9 8,64 C8,33.1 33.1,8 64,8 Z" />
+
+    <!-- Outer Rim Accent Gradient/Border -->
+    <path
+        android:strokeColor="#323646"
+        android:strokeWidth="2.5"
+        android:pathData="M64,8 C94.9,8 120,33.1 120,64 C120,94.9 94.9,120 64,120 C33.1,120 8,94.9 8,64 C8,33.1 33.1,8 64,8 Z" />
+
+    <!-- Electric Blue & Violet Dynamic Aura Arc -->
+    <path
+        android:fillColor="#3D7BFF"
+        android:pathData="M64,18 C89.4,18 110,38.6 110,64 C110,75.3 105.9,85.6 99.1,93.6 C94.8,82.8 85.8,74.7 74.4,72.4 C70.2,71.5 65.5,72.1 61.8,74.2 C52.2,79.5 48.7,91.8 53.6,101.4 C40.1,96.5 30.1,84.4 28.3,69.5 C26.3,53.2 34.6,37.8 48.7,28.8 C53.4,25.8 58.6,23.7 64,18 Z" />
+
+    <path
+        android:fillColor="#8A5CFF"
+        android:pathData="M64,18 C78.2,18 90.9,24.8 99,35.2 C89.5,41.2 78.4,44.7 66.5,44.7 C57.3,44.7 48.6,42.5 41,38.7 C47.7,26.1 60.9,18 64,18 Z" />
+
+    <!-- Original Dark Mascot Body ("Kuro" The Ink Sprite) -->
+    <!-- Rounded deep charcoal body with smooth flowing curves -->
+    <path
+        android:fillColor="#15171D"
+        android:pathData="M62,32 C78,32 90,44.5 90,60 C90,72.5 82.5,83.2 71.8,87 C69.5,87.8 66.8,88.2 64,88.2 C48.5,88.2 36,75.6 36,60 C36,44.5 47.6,32 62,32 Z" />
+
+    <!-- Mascot Head & Ear silhouette (Origami/Fox-Cat/Sprite ear) -->
+    <path
+        android:fillColor="#242732"
+        android:pathData="M48,35 L40,20 C42,27 45,32 48,35 Z" />
+    <path
+        android:fillColor="#242732"
+        android:pathData="M76,35 L84,20 C82,27 79,32 76,35 Z" />
+
+    <!-- Electric Cyan Ear-tip Glow -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M40,20 L42,25 C41.5,23.5 40.8,21.8 40,20 Z" />
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M84,20 L82,25 C82.5,23.5 83.2,21.8 84,20 Z" />
+
+    <!-- Friendly Mascot Stylized Eyes -->
+    <path
+        android:fillColor="#F4F5F8"
+        android:pathData="M52,56 C54.2,56 56,53.8 56,51 C56,48.2 54.2,46 52,46 C49.8,46 48,48.2 48,51 C48,53.8 49.8,56 52,56 Z" />
+    <path
+        android:fillColor="#3D7BFF"
+        android:pathData="M53,51 C53,49.9 52.1,49 51,49 C49.9,49 49,49.9 49,51 C49,52.1 49.9,53 51,53 C52.1,53 53,52.1 53,51 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50.5,50 C50.5,49.4 50,49 49.5,49 C49,49 48.5,49.4 48.5,50 C48.5,50.6 49,51 49.5,51 C50,51 50.5,50.6 50.5,50 Z" />
+
+    <path
+        android:fillColor="#F4F5F8"
+        android:pathData="M72,56 C74.2,56 76,53.8 76,51 C76,48.2 74.2,46 72,46 C69.8,46 68,48.2 68,51 C68,53.8 69.8,56 72,56 Z" />
+    <path
+        android:fillColor="#3D7BFF"
+        android:pathData="M73,51 C73,49.9 72.1,49 71,49 C69.9,49 69,49.9 69,51 C69,52.1 69.9,53 71,53 C72.1,53 73,52.1 73,51 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M70.5,50 C70.5,49.4 70,49 69.5,49 C69,49 68.5,49.4 68.5,50 C68.5,50.6 69,51 69.5,51 C70,51 70.5,50.6 70.5,50 Z" />
+
+    <!-- Cute subtle nose/smile -->
+    <path
+        android:fillColor="#8A5CFF"
+        android:pathData="M61,61 C61,62.2 62.8,63 62,63 C61.2,63 63,62.2 63,61 Z" />
+
+    <!-- Dynamic Flowing Brush-Tail with Cyan Tip -->
+    <path
+        android:fillColor="#202430"
+        android:pathData="M65,85 C75,85 88,92 92,102 C82,105 70,101 64,96 C62,94 62,88 65,85 Z" />
+    <!-- Tapered Dip-Pen / Brush Tip Accent -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M92,102 C96,105 104,110 108,111 C105,106 100,99 96,96 C94,98 93,100 92,102 Z" />
+
+    <!-- Creative Sparkle Stars -->
+    <!-- Top Right Sparkle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M98,28 L100,22 L102,28 L108,30 L102,32 L100,38 L98,32 L92,30 Z" />
+    <!-- Cyan Small Sparkle -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M32,40 L33.5,36 L35,40 L39,41.5 L35,43 L33.5,47 L32,43 L28,41.5 Z" />
+</vector>

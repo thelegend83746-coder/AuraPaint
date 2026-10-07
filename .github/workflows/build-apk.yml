@@ -1,0 +1,63 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Debug APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.9
+
+      - name: Build Debug APK
+        run: gradle assembleDebug --stacktrace --no-daemon
+
+      - name: Upload Debug APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AuraPaint-Studio-Debug-APK
+          path: app/build/outputs/apk/debug/*.apk
+
+      - name: Create Release with APK
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch'
+        with:
+          tag_name: v1.0.0-build-${{ github.run_number }}
+          name: "AuraPaint Studio v1.0.0 (Build ${{ github.run_number }})"
+          body: |
+            ## 🎨 AuraPaint Studio v1.0.0
+            
+            Automated production build for Android.
+            
+            ### ✨ Features
+            - Native 60 FPS Digital Drawing & Painting Canvas
+            - Multi-Layer Compositing with 12 Blend Modes & Alpha Lock
+            - Parametric Brush Engine (Pencil, G-Pen, Oil, Acrylic, Airbrush, Screentone)
+            - Frame-by-Frame Animation Timeline with Onion Skinning
+            - Tone Curves, Filters, Symmetry & Rulers
+            - Full Project Persistence & High-Res PNG/JPEG Export
+          files: app/build/outputs/apk/debug/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

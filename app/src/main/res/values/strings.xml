@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">AuraPaint Studio</string>
+    <string name="app_tagline">Professional Mobile Digital Art &amp; Animation Studio</string>
+    
+    <!-- Navigation & Titles -->
+    <string name="home_title">Artworks</string>
+    <string name="new_artwork">New Artwork</string>
+    <string name="import_image">Import Image</string>
+    <string name="recent_projects">Recent Projects</string>
+    <string name="no_projects_yet">No artworks yet. Create something magnificent!</string>
+    <string name="settings">Settings</string>
+    
+    <!-- Tools -->
+    <string name="tool_brush">Brush</string>
+    <string name="tool_eraser">Eraser</string>
+    <string name="tool_fill">Bucket Fill</string>
+    <string name="tool_shape">Shapes</string>
+    <string name="tool_text">Text</string>
+    <string name="tool_eyedropper">Eyedropper</string>
+    <string name="tool_transform">Transform</string>
+    <string name="tool_selection">Selection</string>
+    <string name="tool_vector">Vector Pen</string>
+    
+    <!-- Actions -->
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+    <string name="clear_layer">Clear</string>
+    <string name="delete">Delete</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="merge_down">Merge Down</string>
+    <string name="export">Export Artwork</string>
+    <string name="save_project">Save Project</string>
+    <string name="fit_screen">Fit to Screen</string>
+    <string name="reset_rotation">Reset Rotation</string>
+    
+    <!-- Panels -->
+    <string name="layers_panel">Layers</string>
+    <string name="color_picker">Color Studio</string>
+    <string name="brush_library">Brush Library</string>
+    <string name="brush_editor">Brush Studio</string>
+    <string name="filters_panel">Filters &amp; Effects</string>
+    <string name="curves_panel">Tone Curves</string>
+    <string name="symmetry_panel">Symmetry</string>
+    <string name="ruler_panel">Rulers</string>
+    <string name="materials_panel">Materials &amp; Screentones</string>
+    <string name="animation_timeline">Animation Timeline</string>
+    <string name="timelapse_panel">Timelapse Recording</string>
+    <string name="reference_window">Reference Window</string>
+</resources>
